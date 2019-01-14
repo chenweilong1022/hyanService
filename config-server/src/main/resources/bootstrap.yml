@@ -1,0 +1,27 @@
+info:
+  app:
+    name: "@project.name@"
+    description: "@project.description@"
+    version: "@project.version@"
+
+spring:
+  application:
+    name: config-server #服务名称
+  cloud:
+    config:
+  profiles:
+      server:
+        native:
+          search-locations: classpath:/dev
+      active: native
+
+server:
+  port: 9648 #端口号
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9647/eureka/
